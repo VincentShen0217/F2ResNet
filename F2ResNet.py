@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from rffc import FFres_block
+from utilities import FFres_block
 
 class BasicBlock(nn.Module):
 
@@ -58,11 +58,6 @@ class F2ResNet(nn.Module):
 
         #全连接层
         self.fc = nn.Linear(in_channels * 8, num_classes)
-
-        # Zero-initialize the last BN in each residual branch,
-        # so that the residual branch starts with zeros, and each residual block behaves like an identity.
-        # This improves the model by 0.2~0.3% according to
-        # https://arxiv.org/abs/1706.02677
 
     def res_layer(self, x, in_channels, out_channels, stride=1):
         # 定义基本残差块
